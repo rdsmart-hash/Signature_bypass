@@ -1,0 +1,21 @@
+name: Patch and Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  patch-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Fetch services.jar
+        run: curl -o services.jar https://drive.google.com/drive/folders/1d6G6u9RMudj7I3VOumO_If0ZwdDdNP6U
+
+      - name: Apply patches
+        run: your-patching-script.sh services.jar framework.jar
+
+      - name: Deploy updated files
+        run: your-deployment-script.sh
